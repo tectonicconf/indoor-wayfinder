@@ -1,9 +1,17 @@
+import { useContext } from "react";
 import { graphData } from "@/store/graphData";
+import { getEdgesForFloor } from "@/utils/floorHelpers";
+import { NavigationContext } from "@/pages/Map";
+import { NavigationContextType } from "@/utils/types";
+import { DEFAULT_FLOOR_ID } from "@/store/floors";
 
 function Paths() {
+  const { navigation } = useContext(NavigationContext) as NavigationContextType;
+  const edges = getEdgesForFloor(navigation?.activeFloor ?? DEFAULT_FLOOR_ID);
+
   return (
     <g id="Edges">
-      {graphData.edges.map((edge) => {
+      {edges.map((edge) => {
         const { id, from, to } = edge;
         const fromVertex = graphData.vertices.find(
           (vertex) => vertex.id === from

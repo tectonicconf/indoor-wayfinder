@@ -34,7 +34,7 @@ function ObjectItemDetailsDialog({
           <div className="inline-flex rounded-md right-0 bottom-0 p-2 absolute">
             <button
               type="button"
-              className="text-white bg-blue-500 hover:bg-blue-800 hover:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center"
+              className="text-white bg-tectonic-blue hover:bg-tectonic-navy hover:ring-2 focus:outline-none focus:ring-tectonic-cyan/40 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center"
               onClick={objectNavigation}
             >
               <FiNavigation />

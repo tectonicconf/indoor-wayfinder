@@ -19,6 +19,8 @@ export interface Beacon {
 export interface Navigation {
   start: string;
   end?: string;
+  /** The floor (see src/store/floors.ts) currently being displayed/edited. */
+  activeFloor: string;
 }
 
 export interface NavigationContextType {

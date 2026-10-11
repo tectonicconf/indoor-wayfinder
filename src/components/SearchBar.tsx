@@ -135,7 +135,7 @@ function SearchBar() {
   return (
     <div className="md:w-96 w-full flex flex-row">
       <div className="flex flex-inline rounded w-full">
-        <div className="h-12 w-12 center flex-none rounded-l bg-white text-blue-500 text-[8px] ">
+        <div className="h-12 w-12 center flex-none rounded-l bg-white text-tectonic-blue text-[8px] ">
           <div className="w-full h-8 center border-gray-300 border-r">
             <FiCircle />
           </div>
@@ -167,7 +167,7 @@ function SearchBar() {
                     key={index}
                     className={`cursor-pointer p-2 border-t text-gray-600 hover:bg-gray-200 active:bg-gray-300 text-sm md:text-md ${
                       selectedIndex === index
-                        ? "border-l-4 border-blue-500 bg-gray-200"
+                        ? "border-l-4 border-tectonic-blue bg-gray-200"
                         : ""
                     }`}
                     onMouseDown={() => handleSuggestionClick(obj)}
@@ -188,9 +188,9 @@ function SearchBar() {
         </div>
 
         <div className="">
-          <Tooltip content="Search" className="bg-blue-500">
+          <Tooltip content="Search" className="bg-tectonic-blue">
             <button
-              className="h-12 w-12 flex flex-none center justify-center rounded-r bg-blue-500 text-white"
+              className="h-12 w-12 flex flex-none center justify-center rounded-r bg-tectonic-blue text-white"
               onClick={() => handleSearch(inputValue)}
               aria-label="search"
             >

@@ -169,8 +169,10 @@ graphData.edges.forEach((edge) => {
   const toVertex = graphData.vertices.find((vertex) => vertex.id === to);
 
   if (fromVertex && toVertex) {
-    //add the distance between the two vertices as the weight of the edge
-    const length = calculateDistance(fromVertex, toVertex);
+    // Non-walk edges (stairs/elevator/bridge) connect vertices that live in
+    // different floors' coordinate spaces, so Euclidean distance is meaningless
+    // for them - they must carry an explicit fixed weight instead.
+    const length = edge.weight ?? calculateDistance(fromVertex, toVertex);
     graph.addEdge(from, to, length);
   }
 });

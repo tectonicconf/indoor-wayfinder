@@ -10,6 +10,8 @@ import {
 import { MapBackground, Paths, Positions, Objects } from "./IndoorMap";
 
 import Controls from "./MapControls";
+import FloorSwitcher from "./FloorSwitcher";
+import VenueSwitcher from "./VenueSwitcher";
 import ObjectDetailsModal from "./ObjectDetailsDialog";
 import { navigateToObject } from "@/utils/navigationHelper";
 import { toast } from "react-toastify";
@@ -37,7 +39,7 @@ function IndoorMapWrapper() {
   const handlePositionClick = (e: React.MouseEvent<SVGPathElement>) => {
     if (isEditMode) {
       const vertexId = (e.target as HTMLElement).id;
-      setNavigation({ start: vertexId });
+      setNavigation((prevNavigation) => ({ ...prevNavigation, start: vertexId }));
       setIsEditMode(false);
     }
   };
@@ -57,13 +59,18 @@ function IndoorMapWrapper() {
 
       <TransformWrapper
         centerOnInit
-        minScale={isMobile ? 0.4 : 1}
-        doubleClick={{ mode: "reset" }}
-        initialScale={isMobile ? 0.4 : 1}
+        minScale={1}
+        maxScale={12}
+        doubleClick={{ mode: "zoomIn", step: 1 }}
+        initialScale={1}
         smooth={true}
         wheel={{ smoothStep: 0.01 }}
       >
-        <TransformComponent wrapperClass="bg-white">
+        <TransformComponent
+          wrapperClass="bg-white"
+          wrapperStyle={{ width: "100%", height: "100%" }}
+          contentStyle={{ width: "100%", height: "100%" }}
+        >
           <MapBackground>
             {/*Objects are the clickable areas on the map e.g. Rooms, Desks, ...*/}
             <Objects
@@ -80,7 +87,7 @@ function IndoorMapWrapper() {
               handlePositionClick={handlePositionClick}
               className={
                 isEditMode
-                  ? "opacity-100 cursor-pointer hover:fill-[#488af4] "
+                  ? "opacity-100 cursor-pointer hover:fill-tectonic-blue "
                   : "opacity-0"
               }
               navigation={navigation}
@@ -89,6 +96,8 @@ function IndoorMapWrapper() {
         </TransformComponent>
         <Controls />
       </TransformWrapper>
+      <VenueSwitcher />
+      <FloorSwitcher />
     </div>
   );
 }

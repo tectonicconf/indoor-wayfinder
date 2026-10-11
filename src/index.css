@@ -7,7 +7,7 @@
   --object-color: #c1c1c1;
   --object-oppacity-hover: 0.5;
   --position-color: rgba(129, 129, 129, 0.557);
-  --path-color: #488af4;
+  --path-color: #2d74ee;
 }
 
 .center {
@@ -43,11 +43,11 @@
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(25, 118, 210, 1);
+    box-shadow: 0 0 0 0 rgba(45, 116, 238, 1);
   }
 
   50% {
-    box-shadow: 0 0 0 15px rgba(25, 118, 210, 0);
+    box-shadow: 0 0 0 15px rgba(45, 116, 238, 0);
   }
 }
 
@@ -105,7 +105,7 @@
 
 .position-active {
   opacity: 1;
-  fill: #4285f4;
+  fill: #2d74ee;
 }
 
 .path {
