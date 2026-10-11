@@ -66,3 +66,10 @@ yarn-error.log
 # testing
 /coverage
 .vercel
+
+# Temporary local preview/inspector tools (never committed)
+public/_*
+
+# Heavy Wintercircus floor plans + source PDFs/exports (kept local only, too big for git)
+src/assets/floorplans/wintercircus-*
+scripts/wintercircus-simplify/

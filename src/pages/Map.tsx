@@ -13,6 +13,7 @@ import {
 } from "../utils/types";
 import Sidebar from "@/components/Sidebar";
 import db from "@/assets/db.json";
+import { resolveFloorIdForStart } from "@/utils/floorHelpers";
 
 export const NavigationContext = createContext<NavigationContextType | null>(
   null
@@ -20,11 +21,13 @@ export const NavigationContext = createContext<NavigationContextType | null>(
 export const MapDataContext = createContext<MapDataContextType | null>(null);
 function Map() {
   let [searchParams, setSearchParams] = useSearchParams();
-  const DEFAULT_POSITION = "v35";
+  // No default vertex yet - real venue waypoints (Vooruit, Wintercircus) still need authoring.
+  const DEFAULT_POSITION = "";
   const startPosition = searchParams.get("position") || DEFAULT_POSITION;
   const [navigation, setNavigation] = useState<Navigation>({
     start: startPosition,
     end: "",
+    activeFloor: resolveFloorIdForStart(startPosition),
   });
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const navigationValue: NavigationContextType = {
@@ -53,17 +56,17 @@ function Map() {
   return (
     <MapDataContext.Provider value={mapData}>
       <NavigationContext.Provider value={navigationValue}>
-        <div className="flex bg-gray-100 text-gray-800 relative overflow-hidden w-full h-screen">
+        <div className="flex bg-gray-100 text-gray-800 relative overflow-hidden w-full h-[100dvh]">
           {isDesktop && <Sidebar />}
           <main
-            className={`flex w-full ${isDesktop && "-ml-96"} justify-center flex-grow flex-col md:p-10 p-2 transition-all duration-150 ease-in lg:ml-0`}
+            className={`flex w-full min-h-0 ${isDesktop && "-ml-96"} flex-grow flex-col md:p-10 p-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))] pt-[max(0.375rem,env(safe-area-inset-top))] transition-all duration-150 ease-in lg:ml-0`}
           >
             <Toolbar />
-            <div className="center w-full h-full">
+            <div className="center w-full flex-1 min-h-0">
               <IndoorMapWrapper />
             </div>
+            {navigation.end && isMobile && <MobileRouteDetails />}
           </main>
-          {navigation.end && isMobile && <MobileRouteDetails />}
         </div>
       </NavigationContext.Provider>
     </MapDataContext.Provider>

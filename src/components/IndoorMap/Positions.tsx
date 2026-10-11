@@ -1,5 +1,6 @@
-import { graphData } from "@/store/graphData";
+import { getVerticesForFloor } from "@/utils/floorHelpers";
 import { NavigationContextType } from "@/utils/types";
+import { DEFAULT_FLOOR_ID } from "@/store/floors";
 
 interface PositionsProps {
   positionRadius: number;
@@ -13,12 +14,13 @@ function Positions({
   className,
   navigation,
 }: PositionsProps) {
-  const positionBackgroundColor = "#4285f4";
+  const positionBackgroundColor = "#2d74ee";
   const positionBackgroundRadius = positionRadius + 7;
   const positonBackgroundOpacity = 0.2;
-  const startVertex = graphData.vertices.find(
-    (v) => v.id === navigation?.start
+  const vertices = getVerticesForFloor(
+    navigation?.activeFloor ?? DEFAULT_FLOOR_ID
   );
+  const startVertex = vertices.find((v) => v.id === navigation?.start);
 
   function isActivePosition(vertexId: string) {
     return navigation?.start === vertexId;
@@ -26,15 +28,17 @@ function Positions({
   return (
     <g id="Vertexes">
       {/* Background circle for Google Maps like look */}
-      <circle
-        id="background-circle"
-        cx={startVertex?.cx}
-        cy={startVertex?.cy}
-        fill={positionBackgroundColor}
-        opacity={positonBackgroundOpacity}
-        r={positionBackgroundRadius}
-      />
-      {graphData.vertices.map((vertex) => (
+      {startVertex && (
+        <circle
+          id="background-circle"
+          cx={startVertex.cx}
+          cy={startVertex.cy}
+          fill={positionBackgroundColor}
+          opacity={positonBackgroundOpacity}
+          r={positionBackgroundRadius}
+        />
+      )}
+      {vertices.map((vertex) => (
         <circle
           // only allow click on positions that are not referring to an object
           onClick={vertex.objectName ? () => {} : handlePositionClick}
@@ -48,22 +52,24 @@ function Positions({
         />
       ))}
       {/* Circle animation */}
-      <circle
-        id="circle-animation"
-        cx={startVertex?.cx}
-        cy={startVertex?.cy}
-        fill="none"
-        stroke="white"
-        strokeWidth={2}
-        r={positionRadius}
-      >
-        <animate
-          attributeName="stroke-width"
-          values="1;3;1"
-          dur="3s"
-          repeatCount="indefinite"
-        />
-      </circle>
+      {startVertex && (
+        <circle
+          id="circle-animation"
+          cx={startVertex.cx}
+          cy={startVertex.cy}
+          fill="none"
+          stroke="white"
+          strokeWidth={2}
+          r={positionRadius}
+        >
+          <animate
+            attributeName="stroke-width"
+            values="1;3;1"
+            dur="3s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      )}
     </g>
   );
 }

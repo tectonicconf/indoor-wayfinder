@@ -1,17 +1,29 @@
-import floorplan from "@/assets/img/mall-floor-plan.svg";
-import { ReactNode } from "react";
+import { ReactNode, useContext } from "react";
+import { NavigationContext } from "@/pages/Map";
+import { NavigationContextType } from "@/utils/types";
+import { getFloorById, DEFAULT_FLOOR_ID } from "@/store/floors";
+
 interface MapBackgroundProps {
   children: ReactNode;
 }
 
 function MapBackground({ children }: MapBackgroundProps) {
+  const { navigation } = useContext(NavigationContext) as NavigationContextType;
+  const floor =
+    getFloorById(navigation.activeFloor) ?? getFloorById(DEFAULT_FLOOR_ID);
+
   return (
-    <svg
-      //same as mall-floor-plan.svg viewBox
-      viewBox="0.469 0.006 1461.95 1149.136"
-      className="lg:h-[85vh] lg:w-[75vw] h-[85dvh]"
-    >
-      <image id="background" width="100%" height="100%" href={floorplan} />
+    <svg viewBox={floor?.viewBox} className="h-full w-full">
+      {floor && (
+        <image
+          id="background"
+          x={floor.viewBox.split(" ")[0]}
+          y={floor.viewBox.split(" ")[1]}
+          width={floor.viewBox.split(" ")[2]}
+          height={floor.viewBox.split(" ")[3]}
+          href={floor.svg}
+        />
+      )}
       {children}
     </svg>
   );

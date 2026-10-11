@@ -1,4 +1,3 @@
-import logo from "../assets/img/pathpal-logo.svg";
 import { FiChevronRight } from "react-icons/fi";
 import { useContext, useEffect, useState } from "react";
 import {
@@ -9,7 +8,6 @@ import {
 import { MapDataContext, NavigationContext } from "../pages/Map";
 
 import { navigateToObject } from "@/utils/navigationHelper";
-import { FaInfoCircle } from "react-icons/fa";
 
 interface ParsedObjects {
   [key: string]: {
@@ -24,7 +22,6 @@ function Sidebar() {
   ) as NavigationContextType;
   const { objects } = useContext(MapDataContext) as MapDataContextType;
   const [parsedObjects, setParsedObjects] = useState<ParsedObjects>({});
-  const [isRotating, setIsRotating] = useState(false);
   useEffect(() => {
     const groupedObjects = () => {
       const data: ParsedObjects = {};
@@ -55,36 +52,19 @@ function Sidebar() {
   return (
     <aside className="flex flex-col rounded-none w-[35rem] h-screen p-3 bg-white shadow-xl shadow-gray-200 -translate-x-full transform transition-transform duration-150 ease-in lg:translate-x-0 lg:shadow-md ">
       <header className="flex flex-col mb-4 pr-1 border-b py-2 w-full">
-        <a
-          href="https://github.com/openindoormap/openindoormaps"
-          target="_blank"
-          rel="noreferrer"
-          className="font-semibold text-blue-800 text-xs"
-        >
-          <div className="flex items-center p-2 mb-4 text-blue-800 border border-blue-300 rounded-lg bg-blue-50">
-            <FaInfoCircle className="w-4 h-4 mr-2" />
-            Check out my new project OpenIndoorMaps
-          </div>
-        </a>
         <div className="flex items-center flex-none mr-10">
-          <div className="rounded-md w-16 h-16 p-4 bg-gray-100 center">
-            <img
-              src={logo}
-              alt="PathPal"
-              className={` ${isRotating ? "rotate" : ""}`}
-              onClick={() => setIsRotating(true)}
-              onAnimationEnd={() => setIsRotating(false)}
-            />
+          <div className="rounded-md w-16 h-16 bg-tectonic-navy center">
+            <span className="text-2xl font-bold text-tectonic-cyan lowercase">
+              t
+            </span>
           </div>
           <div className="flex flex-col">
-            <div className="flex flex-col">
-              <p className="text-2xl font-semibold text-gray-900 pl-2">
-                PathPal
-              </p>
-              <p className="text-sm font-semibold text-[#225EA9] pl-2">
-                Indoor-Navigation
-              </p>
-            </div>
+            <p className="text-2xl font-semibold text-gray-900 pl-2 lowercase">
+              tectonic
+            </p>
+            <p className="text-sm font-semibold text-tectonic-blue pl-2">
+              Venue Map
+            </p>
           </div>
         </div>
       </header>
@@ -118,7 +98,7 @@ function Sidebar() {
                         {item.desc}
                       </p>
                     </div>
-                    <div className="center ml-auto h-auto center text-xl text-blue-300">
+                    <div className="center ml-auto h-auto center text-xl text-tectonic-blue/40">
                       <FiChevronRight />
                     </div>
                   </div>
