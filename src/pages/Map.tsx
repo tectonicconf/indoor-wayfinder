@@ -1,8 +1,9 @@
 import IndoorMapWrapper from "@/components/IndoorMapWrapper";
 import MobileRouteDetails from "@/components/MobileRouteDetails";
 import Toolbar from "@/components/Toolbar";
+import VenueSwitcher from "@/components/VenueSwitcher";
 import { createContext, useEffect, useState } from "react";
-import { isDesktop, isMobile } from "react-device-detect";
+import { isMobile } from "react-device-detect";
 import { useSearchParams } from "react-router-dom";
 import {
   MapDataContextType,
@@ -11,7 +12,6 @@ import {
   ObjectItem,
   Category,
 } from "../utils/types";
-import Sidebar from "@/components/Sidebar";
 import db from "@/assets/db.json";
 import { resolveFloorIdForStart } from "@/utils/floorHelpers";
 
@@ -56,12 +56,15 @@ function Map() {
   return (
     <MapDataContext.Provider value={mapData}>
       <NavigationContext.Provider value={navigationValue}>
-        <div className="flex bg-gray-100 text-gray-800 relative overflow-hidden w-full h-[100dvh]">
-          {isDesktop && <Sidebar />}
+        <div className="flex bg-tectonic-navy text-white relative overflow-hidden w-full h-[100dvh]">
           <main
-            className={`flex w-full min-h-0 ${isDesktop && "-ml-96"} flex-grow flex-col md:p-10 p-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))] pt-[max(0.375rem,env(safe-area-inset-top))] transition-all duration-150 ease-in lg:ml-0`}
+            className="flex w-full min-h-0 flex-grow flex-col md:p-6 p-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))] pt-[max(0.375rem,env(safe-area-inset-top))]"
           >
-            <Toolbar />
+            {/* Phone: search and venue switcher stacked; desktop: one row, search top-left, venue switcher centered. */}
+            <div className="flex flex-none flex-col md:flex-row md:items-center md:gap-4 md:mb-4 lg:grid lg:grid-cols-[1fr_auto_1fr]">
+              <Toolbar />
+              <VenueSwitcher />
+            </div>
             <div className="center w-full flex-1 min-h-0">
               <IndoorMapWrapper />
             </div>

@@ -18,10 +18,10 @@ function EditPositionButton() {
     }));
   }
   return (
-    <Tooltip content="Change Position" className="bg-green-500">
+    <Tooltip content="Change Position" className="bg-tectonic-navy border border-white/15">
       <button
         data-tooltip-target="tooltip-default"
-        className="ml-1 h-12 w-12 bg-green-500 center rounded text-white"
+        className="ml-1 h-12 w-12 bg-tectonic-cyan center rounded-full text-tectonic-navy active:bg-tectonic-cyan/80"
         onClick={() => handleEdit()}
         aria-label="change position"
       >
