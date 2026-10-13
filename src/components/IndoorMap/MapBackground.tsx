@@ -14,6 +14,21 @@ function MapBackground({ children }: MapBackgroundProps) {
 
   return (
     <svg viewBox={floor?.viewBox} className="h-full w-full">
+      <defs>
+        {/* Floorplans are drawn dark-on-light; map them to a Tectonic navy-to-white
+            duotone (inverted luminance) so they sit on the dark map background. */}
+        <filter id="plan-duotone" colorInterpolationFilters="sRGB">
+          <feColorMatrix
+            type="matrix"
+            values="-0.2126 -0.7152 -0.0722 0 1  -0.2126 -0.7152 -0.0722 0 1  -0.2126 -0.7152 -0.0722 0 1  0 0 0 1 0"
+          />
+          <feComponentTransfer>
+            <feFuncR type="table" tableValues="0.02 1" />
+            <feFuncG type="table" tableValues="0.039 1" />
+            <feFuncB type="table" tableValues="0.169 1" />
+          </feComponentTransfer>
+        </filter>
+      </defs>
       {floor && (
         <image
           id="background"
@@ -22,6 +37,7 @@ function MapBackground({ children }: MapBackgroundProps) {
           width={floor.viewBox.split(" ")[2]}
           height={floor.viewBox.split(" ")[3]}
           href={floor.svg}
+          filter="url(#plan-duotone)"
         />
       )}
       {children}

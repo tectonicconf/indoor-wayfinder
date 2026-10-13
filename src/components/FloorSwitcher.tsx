@@ -34,7 +34,7 @@ function FloorSwitcher() {
             className={`w-11 h-11 shrink-0 rounded-full text-xs font-semibold shadow-md border transition-colors ${
               isActive
                 ? "bg-tectonic-blue text-white border-tectonic-blue"
-                : "bg-white text-gray-700 border-gray-200 active:bg-gray-100"
+                : "bg-white/10 backdrop-blur-md text-white border-white/15 active:bg-white/20"
             }`}
           >
             {floor.shortLabel ?? floor.name}

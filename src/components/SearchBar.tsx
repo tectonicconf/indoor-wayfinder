@@ -134,15 +134,15 @@ function SearchBar() {
 
   return (
     <div className="md:w-96 w-full flex flex-row">
-      <div className="flex flex-inline rounded w-full">
-        <div className="h-12 w-12 center flex-none rounded-l bg-white text-tectonic-blue text-[8px] ">
-          <div className="w-full h-8 center border-gray-300 border-r">
+      <div className="flex flex-inline items-center rounded-full w-full bg-white/10 backdrop-blur-md border border-white/15 p-1">
+        <div className="h-10 w-10 center flex-none text-tectonic-cyan text-[8px]">
+          <div className="w-full h-6 center border-white/20 border-r">
             <FiCircle />
           </div>
         </div>
         <div className="flex w-full relative">
           <input
-            className={`h-12 p-4 w-full flex-none text-gray-900 text-sm md:text-md ${
+            className={`h-10 px-3 w-full flex-none bg-transparent text-white placeholder:text-white/50 text-base focus:outline-none ${
               isInputInvalid && "input-error"
             } `}
             placeholder="Search"
@@ -158,16 +158,16 @@ function SearchBar() {
           {isAutocomplete && (
             <ul
               ref={suggestionsRef}
-              className="absolute w-full z-10 mt-[3.25rem] bg-white rounded shadow-md max-h-60 h-min overflow-auto"
+              className="absolute w-full z-10 mt-[3.25rem] bg-[#000523]/95 backdrop-blur-md border border-white/15 rounded-[14px] shadow-xl max-h-60 h-min overflow-auto"
               key={"suggestions"}
             >
               {suggestions.length > 0 ? (
                 suggestions.map((obj, index) => (
                   <li
                     key={index}
-                    className={`cursor-pointer p-2 border-t text-gray-600 hover:bg-gray-200 active:bg-gray-300 text-sm md:text-md ${
+                    className={`cursor-pointer px-4 py-3 border-t border-white/10 first:border-t-0 text-white/80 hover:bg-white/10 active:bg-white/20 text-sm md:text-md ${
                       selectedIndex === index
-                        ? "border-l-4 border-tectonic-blue bg-gray-200"
+                        ? "border-l-4 border-l-tectonic-cyan bg-white/10"
                         : ""
                     }`}
                     onMouseDown={() => handleSuggestionClick(obj)}
@@ -177,7 +177,7 @@ function SearchBar() {
                 ))
               ) : (
                 <li
-                  className="p-2 text-gray-500 text-sm md:text-md"
+                  className="px-4 py-3 text-white/60 text-sm md:text-md"
                   key={"no-result"}
                 >
                   No results found
@@ -188,9 +188,9 @@ function SearchBar() {
         </div>
 
         <div className="">
-          <Tooltip content="Search" className="bg-tectonic-blue">
+          <Tooltip content="Search" className="bg-tectonic-navy border border-white/15">
             <button
-              className="h-12 w-12 flex flex-none center justify-center rounded-r bg-tectonic-blue text-white"
+              className="h-10 w-10 flex flex-none center justify-center rounded-full bg-tectonic-blue text-white active:bg-tectonic-blue/80"
               onClick={() => handleSearch(inputValue)}
               aria-label="search"
             >

@@ -9,7 +9,7 @@ import SearchBar from "./SearchBar";
 function Toolbar() {
   const { navigation } = useContext(NavigationContext) as NavigationContextType;
   return (
-    <div className="flex space-x-1 mb-1.5 md:mb-4 h-12 flex-none relative">
+    <div className="flex space-x-1 mb-1.5 md:mb-0 h-12 flex-none relative">
       <SearchBar />
       <EditPositionButton />
       {navigation.end && isDesktop && <DesktopRouteDetails />}

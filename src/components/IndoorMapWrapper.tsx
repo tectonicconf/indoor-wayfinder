@@ -11,7 +11,6 @@ import { MapBackground, Paths, Positions, Objects } from "./IndoorMap";
 
 import Controls from "./MapControls";
 import FloorSwitcher from "./FloorSwitcher";
-import VenueSwitcher from "./VenueSwitcher";
 import ObjectDetailsModal from "./ObjectDetailsDialog";
 import { navigateToObject } from "@/utils/navigationHelper";
 import { toast } from "react-toastify";
@@ -49,7 +48,7 @@ function IndoorMapWrapper() {
     navigateToObject(object.name, navigation, setNavigation);
   }
   return (
-    <div className="relative w-full h-full bg-white center">
+    <div className="relative w-full h-full bg-tectonic-navy center">
       <ObjectDetailsModal
         open={modalOpen}
         object={object}
@@ -67,7 +66,7 @@ function IndoorMapWrapper() {
         wheel={{ smoothStep: 0.01 }}
       >
         <TransformComponent
-          wrapperClass="bg-white"
+          wrapperClass="bg-tectonic-navy"
           wrapperStyle={{ width: "100%", height: "100%" }}
           contentStyle={{ width: "100%", height: "100%" }}
         >
@@ -96,7 +95,6 @@ function IndoorMapWrapper() {
         </TransformComponent>
         <Controls />
       </TransformWrapper>
-      <VenueSwitcher />
       <FloorSwitcher />
     </div>
   );
