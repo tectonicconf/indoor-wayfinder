@@ -108,7 +108,7 @@ export const floors: Floor[] = [
   },
 ];
 
-export const DEFAULT_FLOOR_ID = "vooruit-0";
+export const DEFAULT_FLOOR_ID = "wintercircus-0";
 
 export function getFloorById(id: string): Floor | undefined {
   return floors.find((f) => f.id === id);
