@@ -1,3 +1,5 @@
+import type { Route } from "@/utils/routing";
+
 export interface ObjectItem {
   id: string;
   name: string;
@@ -26,19 +28,21 @@ export interface Beacon {
 }
 
 export interface Navigation {
+  /** "From" place (location name, or a graph vertex id from a QR deep link). Empty until chosen. */
   start: string;
+  /** "To" place. While set, the directions panel is open. */
   end?: string;
   /** The floor (see src/store/floors.ts) currently being displayed/edited. */
   activeFloor: string;
-  /** Location (object name) currently highlighted on the map. */
+  /** Location (object name) currently located/highlighted on the map (shown in the place card). */
   selected?: string;
 }
 
 export interface NavigationContextType {
   navigation: Navigation;
   setNavigation: React.Dispatch<React.SetStateAction<Navigation>>;
-  isEditMode: boolean;
-  setIsEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+  /** Walking route from navigation.start to navigation.end, or null. */
+  route: Route | null;
 }
 
 export interface MapDataContextType {

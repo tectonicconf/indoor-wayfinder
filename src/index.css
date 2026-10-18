@@ -166,3 +166,43 @@ body {
     stroke-dashoffset: 120;
   }
 }
+
+/* Walking route (map units: floor plans are ~2800 wide, so strokes are much larger than CSS px) */
+.route-casing {
+  stroke: #ffffff;
+  stroke-width: 26px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.route-line {
+  stroke: #2d74ee;
+  stroke-width: 16px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1 38;
+  animation: route-march 1.4s linear infinite;
+}
+@keyframes route-march {
+  to {
+    stroke-dashoffset: -39;
+  }
+}
+.route-start {
+  fill: #02e3de;
+  stroke: #ffffff;
+  stroke-width: 10px;
+}
+.route-end {
+  fill: #2d74ee;
+  stroke: #ffffff;
+  stroke-width: 10px;
+}
+.route-end-halo {
+  fill: #2d74ee;
+  opacity: 0.25;
+}
+.route-change {
+  fill: #ffffff;
+  stroke: #9600c8;
+  stroke-width: 10px;
+}

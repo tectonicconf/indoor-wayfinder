@@ -1,61 +1,31 @@
-import React, { useContext, useState } from "react";
-import { isMobile } from "react-device-detect";
+import React, { useContext } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { MapDataContext, NavigationContext } from "../pages/Map";
-import {
-  MapDataContextType,
-  NavigationContextType,
-  ObjectItem,
-} from "../utils/types";
-import { MapBackground, Paths, Positions, Objects, FloorLinks } from "./IndoorMap";
+import { MapDataContextType, NavigationContextType } from "../utils/types";
+import { MapBackground, RouteLayer, Objects, FloorLinks } from "./IndoorMap";
 
 import Controls from "./MapControls";
 import FloorSwitcher from "./FloorSwitcher";
-import ObjectDetailsModal from "./ObjectDetailsDialog";
-import { navigateToObject } from "@/utils/navigationHelper";
+import { locatePlace } from "@/utils/places";
 import { toast } from "react-toastify";
 
 function IndoorMapWrapper() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [object, setObject] = useState<ObjectItem>({} as ObjectItem);
-  const positionRadius = isMobile ? 10 : 8;
-  const { navigation, setNavigation, isEditMode, setIsEditMode } = useContext(
-    NavigationContext
-  ) as NavigationContextType;
+  const { setNavigation } = useContext(NavigationContext) as NavigationContextType;
   const { objects } = useContext(MapDataContext) as MapDataContextType;
-  async function handleObjectClick(e: React.MouseEvent<SVGPathElement>) {
-    if (!isEditMode) {
-      const targetId = (e.target as HTMLElement).id;
-      const selectedObject = objects.find((obj) => obj.name === targetId);
-      if (selectedObject?.id) {
-        setObject(selectedObject);
-        setModalOpen(true);
-      } else {
-        toast.error("Object not found");
-      }
-    }
-  }
-  const handlePositionClick = (e: React.MouseEvent<SVGPathElement>) => {
-    if (isEditMode) {
-      const vertexId = (e.target as HTMLElement).id;
-      setNavigation((prevNavigation) => ({ ...prevNavigation, start: vertexId }));
-      setIsEditMode(false);
-    }
-  };
 
-  function handleNavigationClick() {
-    setModalOpen(false);
-    navigateToObject(object.name, navigation, setNavigation);
+  // Tapping a place on the map LOCATES it (place card with a Directions button).
+  function handleObjectClick(e: React.MouseEvent<SVGPathElement>) {
+    const targetId = (e.target as HTMLElement).id;
+    const selectedObject = objects.find((obj) => obj.name === targetId);
+    if (selectedObject?.id) {
+      locatePlace(selectedObject.name, setNavigation);
+    } else {
+      toast.error("Object not found");
+    }
   }
+
   return (
     <div className="relative w-full h-full bg-tectonic-navy center">
-      <ObjectDetailsModal
-        open={modalOpen}
-        object={object}
-        onClose={() => setModalOpen((cur) => !cur)}
-        objectNavigation={handleNavigationClick}
-      />
-
       <TransformWrapper
         centerOnInit
         minScale={1}
@@ -72,29 +42,11 @@ function IndoorMapWrapper() {
         >
           <MapBackground>
             {/*Objects are the clickable areas on the map e.g. Rooms, Desks, ...*/}
-            <Objects
-              handleObjectClick={handleObjectClick}
-              className={
-                isEditMode ? "pointer-events-none" : "cursor-pointer"
-              }
-            />
+            <Objects handleObjectClick={handleObjectClick} className="cursor-pointer" />
             {/*Direction labels, stairs, ramps and bridges that switch floors*/}
-            <FloorLinks
-              className={isEditMode ? "pointer-events-none" : "cursor-pointer"}
-            />
-            {/*Edges are the lines on the map aka the paths*/}
-            <Paths />
-            {/*Vertexes are the circles on the map aka the positions*/}
-            <Positions
-              positionRadius={positionRadius}
-              handlePositionClick={handlePositionClick}
-              className={
-                isEditMode
-                  ? "opacity-100 cursor-pointer hover:fill-tectonic-blue "
-                  : "opacity-0"
-              }
-              navigation={navigation}
-            />
+            <FloorLinks className="cursor-pointer" />
+            {/*The walking route for the active floor*/}
+            <RouteLayer />
           </MapBackground>
         </TransformComponent>
         <Controls />

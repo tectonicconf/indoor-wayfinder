@@ -73,6 +73,13 @@
       "area": "M960 1760L1140 1880L1480 1920L1480 2107L1200 2127L1067 2087L753 1913L640 1627L827 1567L960 1760Z"
     },
     {
+      "id": "wintercircus-0-main-entrance",
+      "name": "Main entrance",
+      "desc": "The main entrance of the Wintercircus, on Sint-Pietersnieuwstraat.",
+      "categoryId": "services",
+      "floorId": "wintercircus-0"
+    },
+    {
       "id": "wintercircus-0-atrium",
       "name": "Atrium",
       "desc": "The central hall of the Wintercircus, with the partner booths. The main entrance is on Sint-Pietersnieuwstraat.",
