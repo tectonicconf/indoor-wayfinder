@@ -97,9 +97,14 @@ body {
   stroke-width: 6;
   stroke-opacity: 0;
   transition: fill-opacity 0.2s ease, stroke-opacity 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 }
-.object:hover {
-  fill-opacity: 0.15;
+/* Hover highlight only for real pointers: touch screens keep :hover "stuck" on
+   the last tapped spot, which showed a highlight after switching floors. */
+@media (hover: hover) and (pointer: fine) {
+  .object:hover {
+    fill-opacity: 0.15;
+  }
 }
 .object-selected {
   fill-opacity: 0.25;
