@@ -1,11 +1,12 @@
-import vooruitFloor0 from "@/assets/floorplans/vooruit-floor-0.svg";
-import vooruitFloor1 from "@/assets/floorplans/vooruit-floor-1.svg";
-import wintercircusNeg2 from "@/assets/floorplans/wintercircus-neg2f.svg";
-import wintercircusNeg1 from "@/assets/floorplans/wintercircus-neg1f.svg";
-import wintercircus1 from "@/assets/floorplans/wintercircus-1f.svg";
-import wintercircus2 from "@/assets/floorplans/wintercircus-2f.svg";
-import wintercircus3 from "@/assets/floorplans/wintercircus-3f.svg";
-import wintercircus4 from "@/assets/floorplans/wintercircus-4f.svg";
+// Floor maps from the "Tectonic 26 Master File" design export (2800x2520 SVG each, text outlined).
+import vooruitFloor0 from "@/assets/floorplans/tectonic-26/vooruit-0-meeting-hub.svg";
+import vooruitFloor1 from "@/assets/floorplans/tectonic-26/vooruit-1-pitching-stage.svg";
+import wintercircusNeg2 from "@/assets/floorplans/tectonic-26/wintercircus-neg2.svg";
+import wintercircusNeg1 from "@/assets/floorplans/tectonic-26/wintercircus-neg1.svg";
+import wintercircus0 from "@/assets/floorplans/tectonic-26/wintercircus-0.svg";
+import wintercircus1 from "@/assets/floorplans/tectonic-26/wintercircus-1.svg";
+import wintercircus4 from "@/assets/floorplans/tectonic-26/wintercircus-4.svg";
+import bridgeOverview from "@/assets/floorplans/tectonic-26/bridge-wintercircus-neg2-vooruit-0.svg";
 
 export interface Venue {
   id: string;
@@ -20,6 +21,7 @@ export interface Floor {
   order: number;
   /** Compact label (e.g. "GF", "+1F") for the floor switcher pill. Falls back to `name`. */
   shortLabel?: string;
+  /** Floor map image URL (SVG or raster). */
   svg: string;
   viewBox: string;
 }
@@ -27,80 +29,82 @@ export interface Floor {
 export const venues: Venue[] = [
   { id: "wintercircus", name: "Wintercircus" },
   { id: "vooruit", name: "Vooruit" },
+  { id: "overview", name: "Overview" },
 ];
 
 export const floors: Floor[] = [
   {
     id: "vooruit-0",
     venueId: "vooruit",
-    name: "Vooruit - Floor 0",
+    name: "Vooruit - Meeting Hub (Level 0)",
     order: 0,
     shortLabel: "0",
     svg: vooruitFloor0,
-    viewBox: "0 0 507 760",
+    viewBox: "0 0 2800 2520",
   },
   {
     id: "vooruit-1",
     venueId: "vooruit",
-    name: "Vooruit - Floor 1",
+    name: "Vooruit - Pitching Stage (Level +1)",
     order: 1,
     shortLabel: "1",
     svg: vooruitFloor1,
-    viewBox: "0 0 509 777",
+    viewBox: "0 0 2800 2520",
   },
   {
     id: "wintercircus-neg2",
     venueId: "wintercircus",
-    name: "Wintercircus - Floor -2",
+    name: "Wintercircus - Level -2",
     order: -2,
     shortLabel: "-2",
     svg: wintercircusNeg2,
-    viewBox: "860 10 1906 2365",
+    viewBox: "0 0 2800 2520",
   },
   {
     id: "wintercircus-neg1",
     venueId: "wintercircus",
-    name: "Wintercircus - Floor -1",
+    name: "Wintercircus - Level -1",
     order: -1,
     shortLabel: "-1",
     svg: wintercircusNeg1,
-    viewBox: "550 80 1940 1960",
+    viewBox: "0 0 2800 2520",
+  },
+  {
+    id: "wintercircus-0",
+    venueId: "wintercircus",
+    name: "Wintercircus - Ground floor",
+    order: 0,
+    shortLabel: "0",
+    svg: wintercircus0,
+    viewBox: "0 0 2800 2520",
   },
   {
     id: "wintercircus-1",
     venueId: "wintercircus",
-    name: "Wintercircus - Floor 1",
+    name: "Wintercircus - Level +1",
     order: 1,
     shortLabel: "1",
     svg: wintercircus1,
-    viewBox: "639 197 1862 2099",
-  },
-  {
-    id: "wintercircus-2",
-    venueId: "wintercircus",
-    name: "Wintercircus - Floor 2",
-    order: 2,
-    shortLabel: "2",
-    svg: wintercircus2,
-    viewBox: "525 328 1771 1986",
-  },
-  {
-    id: "wintercircus-3",
-    venueId: "wintercircus",
-    name: "Wintercircus - Floor 3",
-    order: 3,
-    shortLabel: "3",
-    svg: wintercircus3,
-    viewBox: "421 592 1680 1736",
+    viewBox: "0 0 2800 2520",
   },
   {
     id: "wintercircus-4",
     venueId: "wintercircus",
-    name: "Wintercircus - Floor 4",
+    name: "Wintercircus - Level +4",
     order: 4,
     shortLabel: "4",
     svg: wintercircus4,
-    viewBox: "350 701 1679 1505",
+    viewBox: "0 0 2800 2520",
+  },
+  {
+    // Both venues and the bridge between Wintercircus -2 and Vooruit 0.
+    id: "overview-bridge",
+    venueId: "overview",
+    name: "Overview - Bridge between venues",
+    order: 0,
+    shortLabel: "0",
+    svg: bridgeOverview,
+    viewBox: "0 0 2800 2800",
   },
 ];
 

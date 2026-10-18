@@ -18,7 +18,7 @@ body {
   @apply flex justify-center items-center;
 }
 .control-btn {
-  @apply px-4 py-2 text-sm font-semibold text-white bg-white/10 backdrop-blur-md border border-white/15 active:bg-white/20;
+  @apply px-4 py-2 text-sm font-semibold text-white bg-[#000523]/90 backdrop-blur-md border border-white/15 active:bg-tectonic-navy;
 }
 
 .input-error {

@@ -40,7 +40,7 @@ function VenueSwitcher() {
               if (!targetFloor) return;
               setNavigation((prev) => ({ ...prev, activeFloor: targetFloor.id }));
             }}
-            className={`flex-1 h-10 px-4 rounded-full text-sm font-semibold transition-colors ${
+            className={`flex-1 h-10 px-2 md:px-4 rounded-full text-sm font-semibold transition-colors ${
               isActive
                 ? "bg-tectonic-blue text-white"
                 : "text-white/80 active:bg-white/10"

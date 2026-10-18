@@ -61,7 +61,7 @@ function Map() {
             className="flex w-full min-h-0 flex-grow flex-col md:p-6 p-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))] pt-[max(0.375rem,env(safe-area-inset-top))]"
           >
             {/* Phone: search and venue switcher stacked; desktop: one row, search top-left, venue switcher centered. */}
-            <div className="flex flex-none flex-col md:flex-row md:items-center md:gap-4 md:mb-4 lg:grid lg:grid-cols-[1fr_auto_1fr]">
+            <div className="relative z-20 flex flex-none flex-col md:flex-row md:items-center md:gap-4 md:mb-4 lg:grid lg:grid-cols-[1fr_auto_1fr]">
               <Toolbar />
               <VenueSwitcher />
             </div>
