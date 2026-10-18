@@ -22,9 +22,9 @@ const box = (x: number, y: number, w: number, h: number) =>
 
 export const floorLinks: FloorLink[] = [
   // Wintercircus ground floor
-  { floorId: "wintercircus-0", targetFloorId: "wintercircus-neg1", rect: [782.5, 1458, 219, 47] },
+  { floorId: "wintercircus-0", targetFloorId: "wintercircus-neg1", rect: [768, 1431, 248, 74] },
   { floorId: "wintercircus-0", targetFloorId: "wintercircus-neg1", area: "M1041 1683L1035 1677L1029 1671L1023 1664L1017 1658L1011 1651L1005 1644L1000 1638L994 1631L989 1624L984 1616L979 1609L974 1602L969 1594L965 1587L960 1579L956 1572L952 1564L948 1556L944 1548L940 1540L937 1532L933 1524L930 1516L927 1507L824 1545L828 1555L832 1565L836 1575L841 1585L845 1595L850 1605L855 1614L860 1624L865 1633L871 1643L877 1652L882 1661L888 1670L895 1679L901 1688L907 1697L914 1705L921 1714L928 1722L935 1730L942 1738L950 1746L957 1754L965 1762L1041 1683Z" },
-  { floorId: "wintercircus-0", targetFloorId: "wintercircus-neg1", rect: [2411, 1022, 219, 47] },
+  { floorId: "wintercircus-0", targetFloorId: "wintercircus-neg1", rect: [2396.5, 1008.5, 248, 74] },
   { floorId: "wintercircus-0", targetFloorId: "wintercircus-neg1", area: "M2123 1113L2364 1027L2388 1093L2147 1179L2123 1113Z" },
   { floorId: "wintercircus-0", targetFloorId: "wintercircus-1", rect: [600, 1122, 280, 50] },
   { floorId: "wintercircus-0", targetFloorId: "wintercircus-1", area: "M730 1008L806 932L1027 859L1090 834L1079 840L1067 846L1057 853L1046 860L1035 867L1025 874L1014 882L1004 890L994 898L984 906L975 914L965 923L956 932L947 941L938 950L930 960L921 969L913 979L905 989L897 999L890 1009L883 1020L875 1031L869 1041L862 1052L856 1063L850 1075L844 1086L838 1098L833 1109L730 1008Z" },
