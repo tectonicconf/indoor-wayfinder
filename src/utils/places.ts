@@ -7,6 +7,22 @@ type SetNavigation = Dispatch<SetStateAction<Navigation>>;
 
 const findPlace = (name: string) => (db.objects as ObjectItem[]).find((o) => o.name === name);
 
+/**
+ * Resolves a place from a link parameter (e.g. "?to=Workshop room 1"): exact name,
+ * then case-insensitive name, then location id. Returns undefined if nothing matches.
+ */
+export function findPlaceFromLink(value: string | null): ObjectItem | undefined {
+  const wanted = value?.trim();
+  if (!wanted) return undefined;
+  const places = db.objects as ObjectItem[];
+  const lower = wanted.toLowerCase();
+  return (
+    places.find((o) => o.name === wanted) ??
+    places.find((o) => o.name.toLowerCase() === lower) ??
+    places.find((o) => o.id.toLowerCase() === lower)
+  );
+}
+
 /** LOCATE: jump to the place's floor and highlight it (the place card opens). Ends any directions. */
 export function locatePlace(name: string, setNavigation: SetNavigation) {
   const place = findPlace(name);
