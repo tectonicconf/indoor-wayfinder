@@ -12,19 +12,35 @@ function Objects({ handleObjectClick, className }: ObjectsProps) {
   const { objects } = useContext(MapDataContext) as MapDataContextType;
   const { navigation } = useContext(NavigationContext) as NavigationContextType;
 
+  const onFloor = objects.filter(
+    (obj) => obj.area && obj.floorId === navigation.activeFloor
+  );
+  const classFor = (name: string) =>
+    `object ${navigation.selected === name ? "object-selected" : ""} ${className ?? ""}`;
+
   return (
     <g id="Objects">
-      {objects
-        .filter((obj) => obj.area && obj.floorId === navigation.activeFloor)
+      {onFloor.map((obj) => (
+        <path
+          key={obj.id}
+          id={obj.name}
+          d={obj.area}
+          onClick={handleObjectClick}
+          className={classFor(obj.name)}
+        >
+          <title>{obj.name}</title>
+        </path>
+      ))}
+      {/* Label hit areas go last so they win over overlapping areas. */}
+      {onFloor
+        .filter((obj) => obj.labelArea)
         .map((obj) => (
           <path
-            key={obj.id}
+            key={`${obj.id}-label`}
             id={obj.name}
-            d={obj.area}
+            d={obj.labelArea}
             onClick={handleObjectClick}
-            className={`object ${
-              navigation.selected === obj.name ? "object-selected" : ""
-            } ${className ?? ""}`}
+            className={classFor(obj.name)}
           >
             <title>{obj.name}</title>
           </path>

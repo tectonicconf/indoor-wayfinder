@@ -1,6 +1,7 @@
 import { ObjectItem } from "@/utils/types";
 import { FiNavigation } from "react-icons/fi";
 import { Dialog, DialogBody, DialogHeader } from "./ui/Dialog";
+import { getFloorById } from "@/store/floors";
 
 interface ObjectItemDetailsDialogProps {
   open: boolean;
@@ -27,8 +28,13 @@ function ObjectItemDetailsDialog({
           <p>{object.categoryName}</p>
         </DialogHeader>
         <DialogBody>
-          <div className="mb-6">
+          <div className="mb-6 pr-12">
             <p className="text-lg font-semibold text-white">{object.name}</p>
+            {object.floorId && (
+              <p className="text-sm font-semibold text-tectonic-cyan mb-2">
+                {getFloorById(object.floorId)?.name}
+              </p>
+            )}
             <p className="text-md text-white/70">{object.desc}</p>
           </div>
           <div className="inline-flex rounded-md right-0 bottom-0 p-2 absolute">
