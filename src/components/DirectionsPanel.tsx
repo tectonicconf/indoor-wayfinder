@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { FaX } from "react-icons/fa6";
-import { FiChevronDown, FiChevronUp, FiCircle, FiMapPin, FiRepeat } from "react-icons/fi";
+import { FiCircle, FiMapPin, FiRepeat } from "react-icons/fi";
 import { TbRoute } from "react-icons/tb";
 import { MapDataContext, NavigationContext } from "@/pages/Map";
 import { MapDataContextType, NavigationContextType } from "@/utils/types";
@@ -9,15 +9,6 @@ import { vertexForPlace } from "@/utils/floorHelpers";
 import { formatDistance, formatDuration } from "@/utils/routing";
 import { getFloorById } from "@/store/floors";
 
-const STEP_ICON: Record<string, string> = {
-  start: "●",
-  walk: "→",
-  stairs: "↕",
-  elevator: "↕",
-  bridge: "⇄",
-  arrive: "⚑",
-};
-
 /** NAVIGATE: choose where you are coming from, then follow the steps. */
 function DirectionsPanel() {
   const { objects } = useContext(MapDataContext) as MapDataContextType;
@@ -25,7 +16,6 @@ function DirectionsPanel() {
   const startName = vertexForPlace(navigation.start)?.objectName ?? "";
   const [text, setText] = useState(startName);
   const [pickerOpen, setPickerOpen] = useState(!startName);
-  const [stepsOpen, setStepsOpen] = useState(false);
 
   useEffect(() => setText(startName), [startName]);
 
@@ -142,19 +132,10 @@ function DirectionsPanel() {
 
         {!pickerOpen && route && (
           <div className="mt-3">
-            <div className="flex items-center justify-between">
-              <p className="text-white font-semibold">
-                {formatDuration(route.seconds)}{" "}
-                <span className="text-white/60 font-normal">· {formatDistance(route.meters)}</span>
-              </p>
-              <button
-                className="flex items-center gap-1 px-3 h-9 rounded-full bg-white/10 text-sm text-white/80"
-                aria-expanded={stepsOpen}
-                onClick={() => setStepsOpen((o) => !o)}
-              >
-                Steps {stepsOpen ? <FiChevronUp /> : <FiChevronDown />}
-              </button>
-            </div>
+            <p className="text-white font-semibold">
+              {formatDuration(route.seconds)}{" "}
+              <span className="text-white/60 font-normal">· {formatDistance(route.meters)}</span>
+            </p>
             {route.floorIds.length > 1 && (
               <div className="flex flex-wrap gap-1.5 mt-2">
                 {route.floorIds.map((id) => (
@@ -171,23 +152,6 @@ function DirectionsPanel() {
                   </button>
                 ))}
               </div>
-            )}
-            {stepsOpen && (
-            <ol className="mt-2">
-              {route.steps.map((step, i) => (
-                <li key={i}>
-                  <button
-                    className="w-full flex items-start gap-3 text-left py-2 min-h-[44px] active:bg-white/10 rounded-lg"
-                    onClick={() => setNavigation((prev) => ({ ...prev, activeFloor: step.floorId }))}
-                  >
-                    <span className="flex-none w-6 h-6 mt-0.5 center rounded-full bg-white/10 text-tectonic-cyan text-xs">
-                      {STEP_ICON[step.kind]}
-                    </span>
-                    <span className="text-sm text-white/90">{step.text}</span>
-                  </button>
-                </li>
-              ))}
-            </ol>
             )}
           </div>
         )}
