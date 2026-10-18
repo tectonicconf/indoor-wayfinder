@@ -13,6 +13,8 @@ export interface FloorLink {
   targetFloorId: string;
   /** Direction label bounds: [x, y, width, height]. */
   rect?: [number, number, number, number];
+  /** Tilt of the label in degrees (clockwise); `rect` is then the bounding box of the tilted label. */
+  angle?: number;
   /** Stairs / ramp / bridge outline as SVG path data. */
   area?: string;
 }
@@ -33,14 +35,14 @@ export const floorLinks: FloorLink[] = [
   // Wintercircus −1
   { floorId: "wintercircus-neg1", targetFloorId: "wintercircus-0", rect: [701, 1547, 220, 47] },
   { floorId: "wintercircus-neg1", targetFloorId: "wintercircus-0", area: "M973 1764L963 1753L952 1743L942 1731L932 1720L923 1709L913 1697L904 1685L896 1672L888 1660L880 1647L872 1634L865 1621L955 1573L961 1584L968 1594L974 1605L981 1615L988 1625L995 1635L1003 1644L1010 1654L1018 1663L1027 1672L1035 1681L1044 1689L973 1764Z" },
-  { floorId: "wintercircus-neg1", targetFloorId: "wintercircus-0", rect: [2392, 1091, 225, 82] },
+  { floorId: "wintercircus-neg1", targetFloorId: "wintercircus-0", rect: [2392, 1091, 225, 82], angle: -15 },
   { floorId: "wintercircus-neg1", targetFloorId: "wintercircus-0", area: "M2122 1112L2363 1022L2388 1098L2141 1178L2122 1112Z" },
-  { floorId: "wintercircus-neg1", targetFloorId: "wintercircus-neg2", rect: [2317, 1232, 227, 103] },
+  { floorId: "wintercircus-neg1", targetFloorId: "wintercircus-neg2", rect: [2317, 1232, 227, 103], angle: -18 },
   { floorId: "wintercircus-neg1", targetFloorId: "wintercircus-neg2", area: "M2117 1274L2397 1174L2646 1110L2646 1131L2635 1193L2627 1235L2117 1370L2117 1274Z" },
   { floorId: "wintercircus-neg1", targetFloorId: "wintercircus-neg2", area: "M1999 1335L2091 1286L2117 1275L2117 1367L2013 1372L1999 1335Z" },
 
   // Wintercircus −2
-  { floorId: "wintercircus-neg2", targetFloorId: "wintercircus-neg1", rect: [2283, 1258, 189, 89] },
+  { floorId: "wintercircus-neg2", targetFloorId: "wintercircus-neg1", rect: [2283, 1258, 189, 89], angle: -18 },
   { floorId: "wintercircus-neg2", targetFloorId: "wintercircus-neg1", area: "M2161 1262L2199 1347L2541 1241L2595 1221L2641 1213L2656 1127L2357 1189L2307 1205L2161 1262Z" },
   { floorId: "wintercircus-neg2", targetFloorId: "vooruit-0", rect: [2433, 1960, 191, 258] },
   { floorId: "wintercircus-neg2", targetFloorId: "vooruit-0", area: "M2599 1450L2706 1450C2726 1450 2736 1460 2736 1480L2736 2520L2664 2520L2664 1639L2567 1639L2587 1522L2599 1450Z" },
