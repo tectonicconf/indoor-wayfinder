@@ -6,7 +6,7 @@ function Controls() {
   return (
     <div className="inline-flex rounded-md absolute right-1 bottom-1 md:right-0 md:bottom-0">
       <button
-        className="control-btn rounded-l hidden md:block"
+        className="control-btn rounded-l-full hidden md:block"
         aria-label="zoomIn"
         onClick={() => zoomIn()}
       >
@@ -20,7 +20,7 @@ function Controls() {
         <FaMinus />
       </button>
       <button
-        className="control-btn rounded md:rounded-r h-11 w-11 md:h-auto md:w-auto flex items-center justify-center shadow-md md:shadow-none"
+        className="control-btn rounded-full md:rounded-l-none md:rounded-r-full h-11 w-11 md:h-auto md:w-auto flex items-center justify-center"
         aria-label="resetTransform"
         onClick={() => resetTransform()}
       >

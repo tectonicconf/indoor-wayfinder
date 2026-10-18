@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/:postion?" element={<Map />} />
         </Routes>
-        <ToastContainer position="bottom-left" closeOnClick autoClose={2500} />
+        <ToastContainer position="bottom-left" closeOnClick autoClose={2500} theme="dark" />
         <Analytics />
       </div>
     </Suspense>

@@ -28,13 +28,13 @@ function ObjectItemDetailsDialog({
         </DialogHeader>
         <DialogBody>
           <div className="mb-6">
-            <p className="text-lg font-medium text-gray-900">{object.name}</p>
-            <p className="text-md text-gray-700">{object.desc}</p>
+            <p className="text-lg font-semibold text-white">{object.name}</p>
+            <p className="text-md text-white/70">{object.desc}</p>
           </div>
           <div className="inline-flex rounded-md right-0 bottom-0 p-2 absolute">
             <button
               type="button"
-              className="text-white bg-tectonic-blue hover:bg-tectonic-navy hover:ring-2 focus:outline-none focus:ring-tectonic-cyan/40 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center"
+              className="text-white bg-tectonic-blue hover:bg-tectonic-blue/80 hover:ring-2 focus:outline-none focus:ring-tectonic-cyan/40 font-semibold rounded-full text-sm p-3 text-center inline-flex items-center"
               onClick={objectNavigation}
             >
               <FiNavigation />

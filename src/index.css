@@ -7,14 +7,18 @@
   --object-color: #c1c1c1;
   --object-oppacity-hover: 0.5;
   --position-color: rgba(129, 129, 129, 0.557);
-  --path-color: #2d74ee;
+  --path-color: #02e3de;
+}
+
+body {
+  @apply bg-tectonic-navy text-white font-sans antialiased;
 }
 
 .center {
   @apply flex justify-center items-center;
 }
 .control-btn {
-  @apply px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200;
+  @apply px-4 py-2 text-sm font-semibold text-white bg-[#000523]/90 backdrop-blur-md border border-white/15 active:bg-tectonic-navy;
 }
 
 .input-error {
@@ -43,11 +47,11 @@
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(45, 116, 238, 1);
+    box-shadow: 0 0 0 0 rgba(2, 227, 222, 0.6);
   }
 
   50% {
-    box-shadow: 0 0 0 15px rgba(45, 116, 238, 0);
+    box-shadow: 0 0 0 15px rgba(2, 227, 222, 0);
   }
 }
 
@@ -105,7 +109,7 @@
 
 .position-active {
   opacity: 1;
-  fill: #2d74ee;
+  fill: #02e3de;
 }
 
 .path {

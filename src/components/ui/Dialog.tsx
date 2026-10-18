@@ -60,7 +60,7 @@ export function Dialog({ open, handler, children }: DialogProps) {
       >
         <div
           ref={dialogRef}
-          className={`bg-white m-4 rounded-lg shadow-xl w-full max-w-md focus:outline-none transition-transform transform-gpu ${animationPhase === "fadeIn" ? "scale-95 opacity-0 animate-fadeIn" : "animate-fadeOut"} md:w-3/5 lg:w-2/5 2xl:w-1/4 min-w-[80%] md:min-w-[60%] lg:min-w-[40%] 2xl:min-w-[25%] max-w-[80%] md:max-w-[60%] lg:max-w-[40%] 2xl:max-w-[25%] pointer-events-auto`}
+          className={`bg-[#000523]/95 backdrop-blur-md border border-white/15 text-white m-4 rounded-[14px] shadow-xl w-full max-w-md focus:outline-none transition-transform transform-gpu ${animationPhase === "fadeIn" ? "scale-95 opacity-0 animate-fadeIn" : "animate-fadeOut"} md:w-3/5 lg:w-2/5 2xl:w-1/4 min-w-[80%] md:min-w-[60%] lg:min-w-[40%] 2xl:min-w-[25%] max-w-[80%] md:max-w-[60%] lg:max-w-[40%] 2xl:max-w-[25%] pointer-events-auto`}
           tabIndex={-1}
           onAnimationEnd={onAnimationEnd}
         >
@@ -73,7 +73,7 @@ export function Dialog({ open, handler, children }: DialogProps) {
 
 export function DialogHeader({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex items-center shrink-0 p-4 pb-0 text-blue-gray-900 antialiased font-sans text-2xl font-semibold leading-snug center">
+    <div className="flex items-center shrink-0 p-4 pb-0 text-white antialiased font-sans text-2xl font-semibold leading-snug center">
       {children}
     </div>
   );
@@ -81,7 +81,7 @@ export function DialogHeader({ children }: { children: React.ReactNode }) {
 
 export function DialogBody({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative p-4 text-blue-gray-500 antialiased font-sans text-base font-light leading-relaxed">
+    <div className="relative p-4 text-white/70 antialiased font-sans text-base font-light leading-relaxed">
       {children}
     </div>
   );
@@ -89,7 +89,7 @@ export function DialogBody({ children }: { children: React.ReactNode }) {
 
 export function DialogFooter({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-end shrink-0 flex-wrap p-4 text-blue-gray-500 pt-0">
+    <div className="flex items-center justify-end shrink-0 flex-wrap p-4 text-white/70 pt-0">
       {children}
     </div>
   );

@@ -1,6 +1,6 @@
 {
-    "name": "PathPal",
-    "short_name": "PathPal",
+    "name": "Tectonic Map",
+    "short_name": "Tectonic Map",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#050A2B",
+    "background_color": "#050A2B",
     "display": "standalone"
 }
