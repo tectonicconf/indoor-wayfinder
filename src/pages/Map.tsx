@@ -15,6 +15,7 @@ import {
 import db from "@/assets/db.json";
 import { resolveFloorIdForStart } from "@/utils/floorHelpers";
 import { computeRoute } from "@/utils/routing";
+import { findPlaceFromLink } from "@/utils/places";
 
 export const NavigationContext = createContext<NavigationContextType | null>(
   null
@@ -22,12 +23,15 @@ export const NavigationContext = createContext<NavigationContextType | null>(
 export const MapDataContext = createContext<MapDataContextType | null>(null);
 function Map() {
   const [searchParams, setSearchParams] = useSearchParams();
-  // "?position=<place>" lets a QR code or link preset the starting point.
+  // "?position=<place>" lets a QR code or link preset the starting point;
+  // "?to=<place>" opens directions to a location (e.g. ?to=Workshop%20room%201).
   const startPosition = searchParams.get("position") || "";
+  const linkDestination = findPlaceFromLink(searchParams.get("to"));
   const [navigation, setNavigation] = useState<Navigation>({
     start: startPosition,
-    end: "",
-    activeFloor: resolveFloorIdForStart(startPosition),
+    end: linkDestination?.name ?? "",
+    selected: linkDestination?.name,
+    activeFloor: linkDestination?.floorId ?? resolveFloorIdForStart(startPosition),
   });
   const route = useMemo(
     () => computeRoute(navigation.start, navigation.end ?? ""),
@@ -54,9 +58,13 @@ function Map() {
     return objectsData;
   }, [categories]);
 
+  // Keep the URL shareable: it reflects the current starting point and destination.
   useEffect(() => {
-    setSearchParams({ position: navigation.start });
-  }, [navigation.start]);
+    const params: Record<string, string> = {};
+    if (navigation.start) params.position = navigation.start;
+    if (navigation.end) params.to = navigation.end;
+    setSearchParams(params, { replace: true });
+  }, [navigation.start, navigation.end]);
 
   const mapData = { objects, categories };
   return (
