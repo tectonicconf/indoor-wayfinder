@@ -64,12 +64,12 @@ function SearchBar() {
   }
 
   return (
-    <div className="md:w-96 w-full flex flex-row">
+    <div className="md:w-96 w-full flex flex-row relative">
       <div className="flex flex-inline items-center rounded-full w-full bg-white/10 backdrop-blur-md border border-white/15 p-1">
         <div className="h-10 w-10 center flex-none text-tectonic-cyan text-lg">
           <FiSearch />
         </div>
-        <div className="flex w-full relative">
+        <div className="flex w-full">
           <input
             className={`h-10 pr-3 w-full flex-none bg-transparent text-white placeholder:text-white/50 text-base focus:outline-none ${
               isInputInvalid && "input-error"
@@ -94,7 +94,7 @@ function SearchBar() {
           {isOpen && (
             <ul
               ref={suggestionsRef}
-              className="absolute w-full z-10 mt-[3.25rem] bg-[#000523]/95 backdrop-blur-md border border-white/15 rounded-[14px] shadow-xl max-h-[50dvh] h-min overflow-auto"
+              className="absolute left-0 right-0 top-full z-50 mt-1.5 bg-[#000523] border border-white/15 rounded-[14px] shadow-xl max-h-[50dvh] h-min overflow-auto"
               key={"suggestions"}
             >
               {suggestions.length > 0 ? (
