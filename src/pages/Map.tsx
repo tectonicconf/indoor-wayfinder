@@ -1,9 +1,9 @@
 import IndoorMapWrapper from "@/components/IndoorMapWrapper";
-import MobileRouteDetails from "@/components/MobileRouteDetails";
+import DirectionsPanel from "@/components/DirectionsPanel";
+import PlaceSheet from "@/components/PlaceSheet";
 import Toolbar from "@/components/Toolbar";
 import VenueSwitcher from "@/components/VenueSwitcher";
-import { createContext, useEffect, useState } from "react";
-import { isMobile } from "react-device-detect";
+import { createContext, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import {
   MapDataContextType,
@@ -14,45 +14,51 @@ import {
 } from "../utils/types";
 import db from "@/assets/db.json";
 import { resolveFloorIdForStart } from "@/utils/floorHelpers";
+import { computeRoute } from "@/utils/routing";
 
 export const NavigationContext = createContext<NavigationContextType | null>(
   null
 );
 export const MapDataContext = createContext<MapDataContextType | null>(null);
 function Map() {
-  let [searchParams, setSearchParams] = useSearchParams();
-  // No default vertex yet - real venue waypoints (Vooruit, Wintercircus) still need authoring.
-  const DEFAULT_POSITION = "";
-  const startPosition = searchParams.get("position") || DEFAULT_POSITION;
+  const [searchParams, setSearchParams] = useSearchParams();
+  // "?position=<place>" lets a QR code or link preset the starting point.
+  const startPosition = searchParams.get("position") || "";
   const [navigation, setNavigation] = useState<Navigation>({
     start: startPosition,
     end: "",
     activeFloor: resolveFloorIdForStart(startPosition),
   });
-  const [isEditMode, setIsEditMode] = useState<boolean>(false);
+  const route = useMemo(
+    () => computeRoute(navigation.start, navigation.end ?? ""),
+    [navigation.start, navigation.end]
+  );
+  // When a route appears, show the floor it starts on.
+  useEffect(() => {
+    if (route) {
+      setNavigation((prev) => ({ ...prev, activeFloor: route.segments[0].floorId }));
+    }
+  }, [route]);
+
   const navigationValue: NavigationContextType = {
     navigation,
     setNavigation,
-    isEditMode,
-    setIsEditMode,
+    route,
   };
   const categories: Category[] = db.categories;
-  const objects = (): ObjectItem[] => {
+  const objects = useMemo((): ObjectItem[] => {
     const objectsData: ObjectItem[] = db.objects;
-    // Add categoryName to each object
     objectsData.forEach((obj) => {
-      obj.categoryName = categories.find(
-        (cat) => cat.id === obj.categoryId
-      )?.name;
+      obj.categoryName = categories.find((cat) => cat.id === obj.categoryId)?.name;
     });
     return objectsData;
-  };
+  }, [categories]);
 
   useEffect(() => {
     setSearchParams({ position: navigation.start });
   }, [navigation.start]);
 
-  const mapData = { objects: objects(), categories };
+  const mapData = { objects, categories };
   return (
     <MapDataContext.Provider value={mapData}>
       <NavigationContext.Provider value={navigationValue}>
@@ -68,7 +74,7 @@ function Map() {
             <div className="center w-full flex-1 min-h-0">
               <IndoorMapWrapper />
             </div>
-            {navigation.end && isMobile && <MobileRouteDetails />}
+            {navigation.end ? <DirectionsPanel /> : navigation.selected ? <PlaceSheet /> : null}
           </main>
         </div>
       </NavigationContext.Provider>

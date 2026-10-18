@@ -1,6 +1,15 @@
 import { graphData, VertexData, EdgeData } from "@/store/graphData";
 import { DEFAULT_FLOOR_ID } from "@/store/floors";
 
+/** The graph vertex for a place: matches a location name, or a raw vertex id (QR deep links). */
+export function vertexForPlace(place: string): VertexData | undefined {
+  if (!place) return undefined;
+  return (
+    graphData.vertices.find((v) => v.objectName === place) ??
+    graphData.vertices.find((v) => v.id === place)
+  );
+}
+
 export function getVertexFloorId(vertexId: string): string | undefined {
   return graphData.vertices.find((v) => v.id === vertexId)?.floorId;
 }
@@ -30,6 +39,6 @@ export function getTransitionEdges(): EdgeData[] {
   });
 }
 
-export function resolveFloorIdForStart(startVertexId: string): string {
-  return getVertexFloorId(startVertexId) ?? DEFAULT_FLOOR_ID;
+export function resolveFloorIdForStart(start: string): string {
+  return vertexForPlace(start)?.floorId ?? DEFAULT_FLOOR_ID;
 }

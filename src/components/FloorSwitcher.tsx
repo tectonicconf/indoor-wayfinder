@@ -8,7 +8,7 @@ import { getFloorById, getFloorsForVenue } from "@/store/floors";
  * thumb reachable) since this is a phone-first control (see CLAUDE.md).
  */
 function FloorSwitcher() {
-  const { navigation, setNavigation } = useContext(
+  const { navigation, setNavigation, route } = useContext(
     NavigationContext
   ) as NavigationContextType;
 
@@ -22,6 +22,7 @@ function FloorSwitcher() {
     <div className="absolute right-2 bottom-16 md:bottom-16 flex flex-col gap-1.5 z-10">
       {floors.map((floor) => {
         const isActive = floor.id === navigation.activeFloor;
+        const onRoute = route?.floorIds.includes(floor.id);
         return (
           <button
             key={floor.id}
@@ -35,7 +36,7 @@ function FloorSwitcher() {
               isActive
                 ? "bg-tectonic-blue text-white border-tectonic-blue"
                 : "bg-[#000523]/90 backdrop-blur-md text-white border-white/15 active:bg-tectonic-navy"
-            }`}
+            } ${onRoute ? "ring-2 ring-tectonic-cyan" : ""}`}
           >
             {floor.shortLabel ?? floor.name}
           </button>
