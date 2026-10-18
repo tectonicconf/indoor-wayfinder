@@ -6,18 +6,6 @@ import { getFloorById } from "@/store/floors";
 
 const PILL_PAD = 8;
 
-/** Unrotated width/height of a label whose tilted bounding box is bw x bh. */
-function tiltedSize(bw: number, bh: number, angle: number): [number, number] {
-  const t = (Math.abs(angle) * Math.PI) / 180;
-  const c = Math.cos(t);
-  const s = Math.sin(t);
-  const det = c * c - s * s;
-  if (!angle || det < 0.1) return [bw, bh];
-  const w = (c * bw - s * bh) / det;
-  const h = (c * bh - s * bw) / det;
-  return w > 0 && h > 0 ? [w, Math.max(h, 24)] : [bw, bh];
-}
-
 /**
  * Makes the direction labels, stairs, ramps and bridges on the active floor map
  * switch to the floor they lead to.
@@ -48,20 +36,17 @@ function FloorLinks({ className }: { className?: string }) {
               setNavigation((prev) => ({ ...prev, activeFloor: link.targetFloorId })),
           };
           if (link.rect) {
-            const [x, y, bw, bh] = link.rect;
-            const [w, h] = tiltedSize(bw, bh, link.angle ?? 0);
-            const cx = x + bw / 2;
-            const cy = y + bh / 2;
+            const [x, y, w, h] = link.rect;
             return (
               <rect
                 key={i}
                 {...props}
-                x={cx - w / 2 - PILL_PAD}
-                y={cy - h / 2 - PILL_PAD}
+                x={x - PILL_PAD}
+                y={y - PILL_PAD}
                 width={w + 2 * PILL_PAD}
                 height={h + 2 * PILL_PAD}
-                rx={Math.min(w, h) / 2 + PILL_PAD}
-                transform={link.angle ? `rotate(${link.angle} ${cx} ${cy})` : undefined}
+                rx={Math.min(Math.min(w, h) / 2, 24) + PILL_PAD}
+                transform={link.angle ? `rotate(${link.angle} ${x} ${y})` : undefined}
               >
                 <title>{label}</title>
               </rect>
