@@ -8,6 +8,11 @@ export interface ObjectItem {
   floorId?: string;
   /** Clickable area as SVG path data in that floor map's coordinates. */
   area?: string;
+  /**
+   * Optional extra hit area for the location's label, drawn above all other
+   * areas (e.g. the ATRIUM label, which overlaps the surrounding booths).
+   */
+  labelArea?: string;
 }
 export interface Category {
   id: string;

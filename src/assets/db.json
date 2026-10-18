@@ -78,23 +78,8 @@
       "desc": "The central hall of the Wintercircus, with the partner booths. The main entrance is on Sint-Pietersnieuwstraat.",
       "categoryId": "areas",
       "floorId": "wintercircus-0",
-      "area": "M1364 843C1640 843 1864 1067 1864 1343C1864 1619 1640 1843 1364 1843C1088 1843 864 1619 864 1343C864 1067 1088 843 1364 843Z"
-    },
-    {
-      "id": "wintercircus-0-drinks-atrium",
-      "name": "Drinks (atrium)",
-      "desc": "Drinks point in the atrium.",
-      "categoryId": "food",
-      "floorId": "wintercircus-0",
-      "area": "M1611 1732C1611 1750.2 1596.2 1765 1578 1765C1559.8 1765 1545 1750.2 1545 1732C1545 1713.8 1559.8 1699 1578 1699C1596.2 1699 1611 1713.8 1611 1732Z"
-    },
-    {
-      "id": "wintercircus-0-drinks-east",
-      "name": "Drinks (east)",
-      "desc": "Drinks point on the east side of the atrium.",
-      "categoryId": "food",
-      "floorId": "wintercircus-0",
-      "area": "M1835 1354C1835 1372.2 1820.2 1387 1802 1387C1783.8 1387 1769 1372.2 1769 1354C1769 1335.8 1783.8 1321 1802 1321C1820.2 1321 1835 1335.8 1835 1354Z"
+      "area": "M1364 843C1640 843 1864 1067 1864 1343C1864 1619 1640 1843 1364 1843C1088 1843 864 1619 864 1343C864 1067 1088 843 1364 843Z",
+      "labelArea": "M1311.0 1297H1417.0A47.0 47.0 0 0 1 1417.0 1391H1311.0A47.0 47.0 0 0 1 1311.0 1297Z"
     },
     {
       "id": "wintercircus-0-startupwallonia",
