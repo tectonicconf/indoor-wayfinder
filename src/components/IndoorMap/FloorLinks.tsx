@@ -15,16 +15,23 @@ function FloorLinks({ className }: { className?: string }) {
     NavigationContext
   ) as NavigationContextType;
 
-  return (
-    <g id="FloorLinks">
-      {floorLinks
-        .filter((link) => link.floorId === navigation.activeFloor)
-        .map((link, i) => {
+  const links = floorLinks
+    .filter((link) => link.floorId === navigation.activeFloor)
+    // Stairs/ramps/bridges first, labels last: a label drawn over a ramp must win the tap.
+    .sort((a, b) => Number(!!a.rect) - Number(!!b.rect));
+
+  // Each link is drawn twice: first an invisible touch margin (all margins in one layer
+  // underneath), then the shape itself on top, so a margin never steals a tap from a shape.
+  const render = (halo: boolean) =>
+    links.map((link, i) => {
           const label = `Go to ${getFloorById(link.targetFloorId)?.name ?? link.targetFloorId}`;
           const props = {
-            role: "button",
-            "aria-label": label,
-            className: `object floor-link ${className ?? ""}`,
+            role: halo ? undefined : "button",
+            "aria-label": halo ? undefined : label,
+            "aria-hidden": halo ? true : undefined,
+            className: halo
+              ? `floor-link-halo ${className ?? ""}`
+              : `object floor-link ${className ?? ""}`,
             onClick: () =>
               setNavigation((prev) => ({ ...prev, activeFloor: link.targetFloorId })),
           };
@@ -49,7 +56,12 @@ function FloorLinks({ className }: { className?: string }) {
               <title>{label}</title>
             </path>
           );
-        })}
+        });
+
+  return (
+    <g id="FloorLinks">
+      <g>{render(true)}</g>
+      <g>{render(false)}</g>
     </g>
   );
 }
