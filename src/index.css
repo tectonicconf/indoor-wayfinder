@@ -106,6 +106,15 @@ body {
     fill-opacity: 0.15;
   }
 }
+/* Invisible touch margin around direction labels and stairs (they are small on a
+   phone at default zoom); stays ~10px on screen at any zoom level. */
+.floor-link-halo {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 20px;
+  vector-effect: non-scaling-stroke;
+  pointer-events: stroke;
+}
 .object-selected {
   fill-opacity: 0.25;
   stroke-opacity: 0.9;
