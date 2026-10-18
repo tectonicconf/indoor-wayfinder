@@ -29,7 +29,8 @@ export interface Floor {
 export const venues: Venue[] = [
   { id: "wintercircus", name: "Wintercircus" },
   { id: "vooruit", name: "Vooruit" },
-  { id: "overview", name: "Overview" },
+  // Overview tab hidden for now (its floor below stays registered).
+  // { id: "overview", name: "Overview" },
 ];
 
 export const floors: Floor[] = [
