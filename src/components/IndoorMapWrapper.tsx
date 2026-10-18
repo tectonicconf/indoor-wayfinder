@@ -7,7 +7,7 @@ import {
   NavigationContextType,
   ObjectItem,
 } from "../utils/types";
-import { MapBackground, Paths, Positions, Objects } from "./IndoorMap";
+import { MapBackground, Paths, Positions, Objects, FloorLinks } from "./IndoorMap";
 
 import Controls from "./MapControls";
 import FloorSwitcher from "./FloorSwitcher";
@@ -77,6 +77,10 @@ function IndoorMapWrapper() {
               className={
                 isEditMode ? "pointer-events-none" : "cursor-pointer"
               }
+            />
+            {/*Direction labels, stairs, ramps and bridges that switch floors*/}
+            <FloorLinks
+              className={isEditMode ? "pointer-events-none" : "cursor-pointer"}
             />
             {/*Edges are the lines on the map aka the paths*/}
             <Paths />
