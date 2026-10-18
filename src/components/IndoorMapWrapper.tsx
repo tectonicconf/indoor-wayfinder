@@ -75,7 +75,7 @@ function IndoorMapWrapper() {
             <Objects
               handleObjectClick={handleObjectClick}
               className={
-                isEditMode ? "" : "hover:cursor-pointer hover:opacity-50"
+                isEditMode ? "pointer-events-none" : "cursor-pointer"
               }
             />
             {/*Edges are the lines on the map aka the paths*/}

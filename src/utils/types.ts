@@ -4,6 +4,10 @@ export interface ObjectItem {
   desc: string;
   categoryId: string;
   categoryName?: string;
+  /** Floor (see src/store/floors.ts) the location is on. */
+  floorId?: string;
+  /** Clickable area as SVG path data in that floor map's coordinates. */
+  area?: string;
 }
 export interface Category {
   id: string;
@@ -21,6 +25,8 @@ export interface Navigation {
   end?: string;
   /** The floor (see src/store/floors.ts) currently being displayed/edited. */
   activeFloor: string;
+  /** Location (object name) currently highlighted on the map. */
+  selected?: string;
 }
 
 export interface NavigationContextType {

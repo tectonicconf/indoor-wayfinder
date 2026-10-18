@@ -3,9 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --object-opacity: 0.1;
-  --object-color: #c1c1c1;
-  --object-oppacity-hover: 0.5;
+  --object-color: #2d74ee;
   --position-color: rgba(129, 129, 129, 0.557);
   --path-color: #02e3de;
 }
@@ -91,15 +89,21 @@ body {
 }
 
 /* Map Styles */
+/* Location areas are invisible until hovered or selected. */
 .object {
-  stroke-opacity: 0;
-  opacity: var(--object-opacity);
   fill: var(--object-color);
-}
-.object-hover {
+  fill-opacity: 0;
+  stroke: var(--object-color);
+  stroke-width: 6;
   stroke-opacity: 0;
-  opacity: var(--object-oppacity-hover);
-  cursor: pointer;
+  transition: fill-opacity 0.2s ease, stroke-opacity 0.2s ease;
+}
+.object:hover {
+  fill-opacity: 0.15;
+}
+.object-selected {
+  fill-opacity: 0.25;
+  stroke-opacity: 0.9;
 }
 
 .position {

@@ -5,6 +5,7 @@ import { ObjectItem } from "./types";
 import { graphData } from "@/store/graphData";
 import { splitPathByFloor, RouteSegment } from "@/utils/routeSegments";
 import { toast } from "react-toastify";
+import db from "@/assets/db.json";
 export let routeLength = 0;
 /** The active route split per floor, updated on every navigateToObject call. */
 export let routeSegments: RouteSegment[] = [];
@@ -19,8 +20,18 @@ export function navigateToObject(
 ) {
   const target = findVertexByObjectId(selectedObjectId);
   if (!target) {
-    console.error("Target not found");
-    toast.error("Target not found");
+    // No route network to this location yet: show it on its floor instead.
+    const location = (db.objects as ObjectItem[]).find((o) => o.name === selectedObjectId);
+    if (!location?.floorId) {
+      toast.error("Location not found");
+      return;
+    }
+    setNavigation((prev) => ({
+      ...prev,
+      activeFloor: location.floorId!,
+      selected: location.name,
+    }));
+    toast.info("Walking directions are coming soon - here it is on the map.");
     return;
   }
 
@@ -69,6 +80,7 @@ export function navigateToObject(
   setNavigation((prevNavigation) => ({
     ...prevNavigation,
     end: selectedObjectId,
+    selected: selectedObjectId,
   }));
 }
 
