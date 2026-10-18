@@ -45,7 +45,8 @@ function FloorLinks({ className }: { className?: string }) {
                 y={y - PILL_PAD}
                 width={w + 2 * PILL_PAD}
                 height={h + 2 * PILL_PAD}
-                rx={Math.min(w, h) / 2 + PILL_PAD}
+                rx={Math.min(Math.min(w, h) / 2, 24) + PILL_PAD}
+                transform={link.angle ? `rotate(${link.angle} ${x} ${y})` : undefined}
               >
                 <title>{label}</title>
               </rect>
