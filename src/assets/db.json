@@ -78,7 +78,7 @@
       "desc": "The central hall of the Wintercircus, with the partner booths. The main entrance is on Sint-Pietersnieuwstraat.",
       "categoryId": "areas",
       "floorId": "wintercircus-0",
-      "area": "M1364 843C1640 843 1864 1067 1864 1343C1864 1619 1640 1843 1364 1843C1088 1843 864 1619 864 1343C864 1067 1088 843 1364 843Z",
+      "area": "M1364 943C1585 943 1764 1122 1764 1343C1764 1564 1585 1743 1364 1743C1143 1743 964 1564 964 1343C964 1122 1143 943 1364 943Z",
       "labelArea": "M1311.0 1297H1417.0A47.0 47.0 0 0 1 1417.0 1391H1311.0A47.0 47.0 0 0 1 1311.0 1297Z"
     },
     {
