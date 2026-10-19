@@ -101,16 +101,6 @@ function DirectionsPanel() {
 
         {pickerOpen && (
           <div className="mt-2">
-            {!query && (
-              <div className="flex gap-2 mb-2">
-                <button
-                  className="px-3 h-9 rounded-full bg-tectonic-blue/20 border border-tectonic-blue/40 text-sm text-white"
-                  onClick={() => pickStart("Main entrance")}
-                >
-                  I am at the main entrance
-                </button>
-              </div>
-            )}
             <ul className="max-h-44 overflow-y-auto rounded-[12px] border border-white/10 bg-white/5">
               {candidates.length ? (
                 candidates.map((o) => (
