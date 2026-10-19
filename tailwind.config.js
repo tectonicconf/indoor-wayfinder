@@ -13,6 +13,17 @@ export default {
           cyan: "#02E3DE",
         },
       },
+      keyframes: {
+        // Cyan ring that grows and fades, to draw attention to an empty field.
+        "pulse-ring": {
+          "0%": { boxShadow: "0 0 0 0 rgba(2, 227, 222, 0.7)" },
+          "70%": { boxShadow: "0 0 0 10px rgba(2, 227, 222, 0)" },
+          "100%": { boxShadow: "0 0 0 0 rgba(2, 227, 222, 0)" },
+        },
+      },
+      animation: {
+        "pulse-ring": "pulse-ring 1.6s ease-out infinite",
+      },
     },
   },
   plugins: [],

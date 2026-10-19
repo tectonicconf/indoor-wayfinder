@@ -16,6 +16,9 @@ function DirectionsPanel() {
   const startName = vertexForPlace(navigation.start)?.objectName ?? "";
   const [text, setText] = useState(startName);
   const [pickerOpen, setPickerOpen] = useState(!startName);
+  const [focused, setFocused] = useState(false);
+  // Pulse the empty start field until the user starts filling it in.
+  const promptStart = !startName && !focused && !text;
 
   useEffect(() => setText(startName), [startName]);
 
@@ -56,7 +59,11 @@ function DirectionsPanel() {
       <div className="px-3 pb-3">
         <div className="flex items-center gap-2">
           <div className="flex-1 min-w-0 flex flex-col gap-2">
-            <label className="flex items-center gap-2 rounded-full bg-white/10 border border-white/15 pl-3 h-11">
+            <label
+              className={`flex items-center gap-2 rounded-full bg-white/10 border pl-3 h-11 ${
+                promptStart ? "border-tectonic-cyan motion-safe:animate-pulse-ring" : "border-white/15"
+              }`}
+            >
               <FiCircle className="text-tectonic-cyan flex-none" />
               <input
                 className="min-w-0 flex-1 bg-transparent h-full text-base text-white placeholder:text-white/50 focus:outline-none"
@@ -64,9 +71,11 @@ function DirectionsPanel() {
                 aria-label="Starting point"
                 value={text}
                 onFocus={(e) => {
+                  setFocused(true);
                   setPickerOpen(true);
                   e.currentTarget.select();
                 }}
+                onBlur={() => setFocused(false)}
                 onChange={(e) => {
                   setText(e.target.value);
                   setPickerOpen(true);
@@ -92,16 +101,6 @@ function DirectionsPanel() {
 
         {pickerOpen && (
           <div className="mt-2">
-            {!query && (
-              <div className="flex gap-2 mb-2">
-                <button
-                  className="px-3 h-9 rounded-full bg-tectonic-blue/20 border border-tectonic-blue/40 text-sm text-white"
-                  onClick={() => pickStart("Main entrance")}
-                >
-                  I am at the main entrance
-                </button>
-              </div>
-            )}
             <ul className="max-h-44 overflow-y-auto rounded-[12px] border border-white/10 bg-white/5">
               {candidates.length ? (
                 candidates.map((o) => (
