@@ -393,7 +393,8 @@ export const graphData: GraphData = {
     { id: "link-L3", from: "w0-link-L3", to: "w1-link-L3", kind: "stairs", weight: 600 },
     { id: "link-E1", from: "w0-link-E1", to: "w4-link-E1", kind: "elevator", weight: 900 },
     { id: "link-L4", from: "wn1-link-L4", to: "wn2-link-L4", kind: "stairs", weight: 600 },
-    { id: "link-L5", from: "wn2-link-L5", to: "v0-link-L5", kind: "bridge", weight: 1200 },
+    // Walk between Wintercircus and Vooruit: 4 min at WALKING_SPEED (4 * 60 s * 1.3 m/s * 30 units/m).
+    { id: "link-L5", from: "wn2-link-L5", to: "v0-link-L5", kind: "bridge", weight: 9360 },
     { id: "link-L6", from: "v0-link-L6", to: "v1-link-L6", kind: "stairs", weight: 600 },
   ],
 };

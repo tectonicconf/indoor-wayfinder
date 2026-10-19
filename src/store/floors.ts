@@ -37,7 +37,7 @@ export const floors: Floor[] = [
   {
     id: "vooruit-0",
     venueId: "vooruit",
-    name: "Vooruit - Meeting Hub (Level 0)",
+    name: "Vooruit 0",
     order: 0,
     shortLabel: "0",
     svg: vooruitFloor0,
@@ -46,7 +46,7 @@ export const floors: Floor[] = [
   {
     id: "vooruit-1",
     venueId: "vooruit",
-    name: "Vooruit - Pitching Stage (Level +1)",
+    name: "Vooruit +1",
     order: 1,
     shortLabel: "1",
     svg: vooruitFloor1,
@@ -55,7 +55,7 @@ export const floors: Floor[] = [
   {
     id: "wintercircus-neg2",
     venueId: "wintercircus",
-    name: "Wintercircus - Level -2",
+    name: "Wintercircus -2",
     order: -2,
     shortLabel: "-2",
     svg: wintercircusNeg2,
@@ -64,7 +64,7 @@ export const floors: Floor[] = [
   {
     id: "wintercircus-neg1",
     venueId: "wintercircus",
-    name: "Wintercircus - Level -1",
+    name: "Wintercircus -1",
     order: -1,
     shortLabel: "-1",
     svg: wintercircusNeg1,
@@ -73,7 +73,7 @@ export const floors: Floor[] = [
   {
     id: "wintercircus-0",
     venueId: "wintercircus",
-    name: "Wintercircus - Ground floor",
+    name: "Wintercircus 0",
     order: 0,
     shortLabel: "0",
     svg: wintercircus0,
@@ -82,7 +82,7 @@ export const floors: Floor[] = [
   {
     id: "wintercircus-1",
     venueId: "wintercircus",
-    name: "Wintercircus - Level +1",
+    name: "Wintercircus +1",
     order: 1,
     shortLabel: "1",
     svg: wintercircus1,
@@ -91,7 +91,7 @@ export const floors: Floor[] = [
   {
     id: "wintercircus-4",
     venueId: "wintercircus",
-    name: "Wintercircus - Level +4",
+    name: "Wintercircus +4",
     order: 4,
     shortLabel: "4",
     svg: wintercircus4,

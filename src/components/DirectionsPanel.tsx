@@ -148,7 +148,7 @@ function DirectionsPanel() {
                     }`}
                     onClick={() => setNavigation((prev) => ({ ...prev, activeFloor: id }))}
                   >
-                    {getFloorById(id)?.name.replace(/^.* - /, "")}
+                    {getFloorById(id)?.name}
                   </button>
                 ))}
               </div>
