@@ -56,7 +56,7 @@ function DirectionsPanel() {
         </button>
       </div>
 
-      <div className="px-3 pb-3">
+      <div className="px-3 pt-2 pb-3">
         <div className="flex items-center gap-2">
           <div className="flex-1 min-w-0 flex flex-col gap-2">
             <label
