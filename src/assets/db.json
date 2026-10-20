@@ -201,6 +201,14 @@
       "area": "M1470 463L1261 559L1259 564L1277 622L1276 672L1326 647L1382 620L1438 609L1472 598L1501 576L1528 535L1510 497L1472 461L1470 463Z"
     },
     {
+      "id": "wintercircus-1-in-the-pocket",
+      "name": "In The Pocket",
+      "desc": "Open networking area together with our partner In The Pocket, on level +1 next to the Innovation stage.",
+      "categoryId": "areas",
+      "floorId": "wintercircus-1",
+      "area": "M1530 891L1608 787L1609 788L1612 793L1616 797L1620 802L1624 807L1628 811L1633 815L1638 819L1642 823L1647 827L1652 831L1657 835L1662 839L1667 843L1672 847L1677 850L1682 854L1687 858L1693 861L1698 864L1703 868L1709 871L1714 874L1720 878L1725 881L1731 885L1736 889L1741 892L1747 896L1752 900L1758 904L1764 908L1770 912L1774 915L1778 917L1810 931L1830 933L1851 934L1882 922L1925 898L1950 951L1936 958L1875 1070L1834 1110L1530 891Z"
+    },
+    {
       "id": "wintercircus-4-rooftop-terrace",
       "name": "Rooftop terrace",
       "desc": "Open-air terrace on the Wintercircus rooftop, next to the Rooftop Lounge.",
